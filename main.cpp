@@ -36,15 +36,25 @@ int main(int argc, const char *argv[]) {
 
   parse_edid(buffer, info);
 
-  printf("Manufacturer: %s\n", info.manufacturer);
-  printf("Product Code: 0x%04X\n", info.product_code);
-  printf("Serial Number: %08d\n", info.serial_number);
-  printf("Manufacture Date: Week %d, Year %d\n", info.week, info.year + 1990);
-  printf("EDID Version: %d.%d\n", info.version, info.revision);
-  printf("Extension Block Count: %d\n", info.extension_block_count);
-  printf("CTA Revision: %d\n", info.cta_revision);
-  printf("CTA DTD Offset: %d\n", info.dtd_offset);
-  printf("CTA Native DTD Count: %d\n", info.native_dtd_count);
+  printf("\n===== EDID Summary =====\n");
+  printf("%-25s : %s\n",  "Manufacturer", info.manufacturer);
+  printf("%-25s : 0x%04X\n", "Product Code", info.product_code);
+  printf("%-25s : 0x%08X\n", "Serial Number", info.serial_number);
+  printf("%-25s : Week %02d, Year %d\n", "Manufacture Date", info.week, info.year);
+  printf("%-25s : %d.%d\n", "EDID Version", info.version, info.revision);
+  printf("%-25s : %d\n", "Extension Block Count", info.extension_block_count);
+
+  bool has_cta_extension = (buffer[128] == 0x02);
+  if (has_cta_extension) {
+    printf("%-25s : %d\n", "CTA Revision", info.cta_revision);
+    printf("%-25s : %d\n", "CTA DTD Offset", info.dtd_offset);
+    printf("%-25s : %d\n", "CTA Native DTD Count", info.native_dtd_count);
+  }
+  else {
+    printf("%-25s : %s\n", "CTA Extension", "Not Present");
+  }
+
+  printf("===== EDID-Analyzer Finished =====\n");
 
   return 0;
 }

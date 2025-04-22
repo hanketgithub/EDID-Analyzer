@@ -36,15 +36,16 @@ If no input file is provided, the tool will print a usage message and exit.
 
 ```plaintext
 ===== EDID-Analyzer Started =====
-Manufacturer: DEL
-Product Code: 0xA105
-Serial Number: 0x12345678
-Manufacture Date: Week 35, Year 2021
-EDID Version: 1.4
+Manufacturer: ACL
+Product Code: 0x6301
+Serial Number: 305419891
+Manufacture Date: Week 2, Year 2025
+EDID Version: 1.3
 Extension Block Count: 1
 CTA Revision: 3
-CTA DTD Offset: 72
+CTA DTD Offset: 70
 CTA Native DTD Count: 1
+
 ```
 
 ---
